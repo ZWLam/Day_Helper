@@ -1,0 +1,39 @@
+<div class="row justify-content-center">
+    <div class="p-0 d-flex justify-content-center">
+        <h1>Pomodoro Timer</h1>
+    </div>
+    <div class="p-0 d-flex justify-content-center">
+        <div [hidden]="this.isIdle">
+            <img style="margin-left: 20px;" src="https://cdn.cdnstep.com/LdeJIvDcaWqCTMQ6HRjE/cover-1.thumb256.png"/>
+            <p class="text-center">Click start to get working!</p>
+        </div>
+
+        <div [hidden]="this.isPaused">
+            <img style="margin-left: 20px; height: 150px;" src="https://media.tenor.com/JovrAHrMni0AAAAM/chiikawa-cute.gif"/>
+            <p class="text-center">Paused, Waiting...</p>
+        </div>
+
+        <div [hidden]="this.isStarted">
+           <img style="margin-left: 20px; height: 150px;" src="https://i.pinimg.com/originals/87/88/86/878886288f61a5bbcdfd8a6ccf9d29ae.gif"/>
+           <p class="text-center">Started! Get to work!</p>
+        </div>
+    </div>
+    <div class="col-12 p-0">
+        <!-- one for input, the other to show -->
+         <div class="d-flex col-12 p-0 align-items-center">
+            <input class="col-lg-4" (keypress)="($event.charCode >= 48 && $event.charCode < 58)" [hidden]="this.isIdle" placeholder="00" [(ngModel)]="hours" type="text" maxlength="2">
+            <p class="col-auto m-0" [hidden]="this.isIdle">:</p>
+            <input class="col-lg-4" (keypress)="($event.charCode >= 48 && $event.charCode < 58)" [hidden]="this.isIdle" placeholder="00" [(ngModel)]="minutes" type="text" maxlength="2">
+            <p class="col-auto m-0" [hidden]="this.isIdle">:</p>
+            <input class="col-lg-4" (keypress)="($event.charCode >= 48 && $event.charCode < 58)" [hidden]="this.isIdle" placeholder="00" [(ngModel)]="seconds" type="text" maxlength="2">
+         </div>
+
+         <p [hidden]="!this.isIdle" class="text-center" style="font-size:60px">{{display}}</p>
+    </div>
+    <div class="d-flex align-items-center justify-content-center">
+        <button (click)="startTimer()" type="button">Start</button>
+        <button (click)="resetTimer()" type="button">Reset</button>
+        <button (click)="pauseTimer()" type="button">Pause</button>
+    </div>
+
+</div>
